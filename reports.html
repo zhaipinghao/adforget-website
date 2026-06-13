@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>報表中心 - Adforget</title>
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/plugins.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-warning: #f97316;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+            --adforget-border: rgba(245,158,11,0.15);
+        }
+        body { background: var(--adforget-bg); color: #e2e8f0; }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue); border-color: var(--adforget-blue); }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark); border-color: var(--adforget-blue-dark); }
+        .btn-outline-primary { color: var(--adforget-primary); border-color: var(--adforget-primary); background: transparent; }
+        .btn-outline-primary:hover { background: var(--adforget-primary); color: #000; }
+        .btn-success { background-color: var(--adforget-success); border-color: var(--adforget-success); }
+        .btn-danger { background-color: var(--adforget-danger); border-color: var(--adforget-danger); }
+        .btn-sm { padding: 5px 12px; font-size: 13px; }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        .btn4 { padding: 8px 15px !important; }
+        .well { background-color: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 8px; padding: 25px; }
+        .form-control { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; border: 1px solid #475569; border-radius: .25rem; }
+        .form-group { margin-bottom: 1rem; }
+        .control-label { display: inline-block; margin-bottom: .5rem; font-weight: 600; color: #e2e8f0; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th { padding: 12px; color: var(--adforget-primary); font-size: 14px; border-bottom: 2px solid var(--adforget-border); text-align: left; }
+        .table td { padding: 12px; border-bottom: 1px solid var(--adforget-border); font-size: 14px; color: #cbd5e1; }
+        .table tr:hover td { background: rgba(245,158,11,0.05); }
+        .section-card { background: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .section-card h3 { color: var(--adforget-primary); font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; }
+        .status-active { background: rgba(5,150,105,0.2); color: var(--adforget-success); }
+        .status-pending { background: rgba(249,115,22,0.2); color: var(--adforget-warning); }
+        .status-inactive { background: rgba(239,68,68,0.2); color: var(--adforget-danger); }
+        .status-draft { background: rgba(148,163,184,0.2); color: #94a3b8; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .search-box .form-control { flex: 1; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--adforget-border); color: #cbd5e1; margin: 2px; }
+        .tag-primary { border-color: var(--adforget-primary); color: var(--adforget-primary); }
+        .tag-success { border-color: var(--adforget-success); color: var(--adforget-success); }
+        .tag-danger { border-color: var(--adforget-danger); color: var(--adforget-danger); }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--adforget-primary), var(--adforget-primary-dark)); display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; font-size: 16px; }
+        .progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .progress-bar .fill { height: 100%; background: var(--adforget-primary); border-radius: 4px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .mini-card { background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; padding: 15px; text-align: center; }
+        .mini-card:hover { border-color: var(--adforget-primary); }
+        .toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #475569; border-radius: 24px; transition: .3s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .3s; }
+        input:checked + .toggle-slider { background: var(--adforget-primary); }
+        input:checked + .toggle-slider:before { transform: translateX(20px); }
+        .platform-connect { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; margin-bottom: 10px; }
+        .platform-connect .info { display: flex; align-items: center; gap: 15px; }
+        .platform-connect .info i { font-size: 28px; }
+        .platform-connect .info h4 { margin: 0; font-size: 16px; color: #e2e8f0; }
+        .platform-connect .info p { margin: 0; font-size: 13px; color: #94a3b8; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: #1e293b; border: 1px solid var(--adforget-border); border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; }
+        .modal-content h3 { color: var(--adforget-primary); margin-bottom: 20px; }
+        .close-modal { float: right; color: #94a3b8; cursor: pointer; font-size: 20px; }
+        .close-modal:hover { color: #e2e8f0; }
+    </style>
+</head>
+<body>
+
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./dashboard.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;">
+                    <a style="color: #fff;font-size: 15px; margin-left: 40px;">
+                        <span class="badge">NT$ 28,200</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./dashboard.html">營運儀表板</a></li>
+                    <li><a class="btn4" href="./neworder.html">新增行銷任務</a></li>
+                    <li><a class="btn4" href="./orders.html">任務紀錄</a></li>
+                    <li><a class="btn4" href="./shipping.html">出貨管理</a></li>
+                    <li><a class="btn4" href="./materials.html">素材庫</a></li>
+                    <li><a class="btn4" href="./kol.html">KOL管理</a></li>
+                    <li class="active"><a class="btn4" href="./reports.html">報表中心</a></li>
+                    <li><a class="btn4" href="./integrations.html">平台整合</a></li>
+                    <li><a class="btn4" href="./team.html">團隊</a></li>
+                    <li><a class="btn4" href="./addfunds.html">帳戶儲值</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./settings.html">設定</a></li>
+                    <li><a><span class="badge">NT$ 28,200</span></a></li>
+                    <li><a href="./account.html">帳戶設定</a></li>
+                    <li><a href="./index.html">退出登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="section-card">
+                <h3><i class="fas fa-filter"></i> 報表篩選</h3>
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">報表類型</label>
+                        <select class="form-control">
+                            <option>銷售分析報表</option>
+                            <option>廣告成效報表</option>
+                            <option>社群互動報表</option>
+                            <option>庫存與出貨報表</option>
+                            <option>毛利分析報表</option>
+                            <option>客戶來源報表</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">日期範圍</label>
+                        <select class="form-control">
+                            <option>今日</option>
+                            <option>昨日</option>
+                            <option>近 7 天</option>
+                            <option selected>近 30 天</option>
+                            <option>近 90 天</option>
+                            <option>自訂範圍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">銷售通路</label>
+                        <select class="form-control">
+                            <option>全部通路</option>
+                            <option>蝦皮</option>
+                            <option>Momo</option>
+                            <option>PChome</option>
+                            <option>官網</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">商品分類</label>
+                        <select class="form-control">
+                            <option>全部商品</option>
+                            <option>3C 產品</option>
+                            <option>生活用品</option>
+                            <option>食品</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sync"></i> 產生報表</button>
+                </form>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-star"></i> 常用報表</h3>
+                <div style="font-size: 14px;">
+                    <div style="padding: 10px 0; border-bottom: 1px solid var(--adforget-border); cursor: pointer;">
+                        <i class="fas fa-file-alt" style="color: var(--adforget-primary); margin-right: 8px;"></i>
+                        <span style="color: #e2e8f0;">每日銷售總覽</span>
+                    </div>
+                    <div style="padding: 10px 0; border-bottom: 1px solid var(--adforget-border); cursor: pointer;">
+                        <i class="fas fa-file-alt" style="color: var(--adforget-primary); margin-right: 8px;"></i>
+                        <span style="color: #e2e8f0;">廣告 ROAS 追蹤</span>
+                    </div>
+                    <div style="padding: 10px 0; border-bottom: 1px solid var(--adforget-border); cursor: pointer;">
+                        <i class="fas fa-file-alt" style="color: var(--adforget-primary); margin-right: 8px;"></i>
+                        <span style="color: #e2e8f0;">月度毛利分析</span>
+                    </div>
+                    <div style="padding: 10px 0; cursor: pointer;">
+                        <i class="fas fa-file-alt" style="color: var(--adforget-primary); margin-right: 8px;"></i>
+                        <span style="color: #e2e8f0;">KOL 合作成效</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="section-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0;"><i class="fas fa-chart-pie"></i> 銷售分析報表（近 30 天）</h3>
+                    <div>
+                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-file-csv"></i> CSV</button>
+                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-file-excel"></i> Excel</button>
+                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 25px;">
+                    <div class="col-md-3">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">總營收</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-primary);">NT$846K</div>
+                            <div style="font-size: 12px; color: var(--adforget-success);"><i class="fas fa-arrow-up"></i> 15.3%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">總訂單</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-primary);">182</div>
+                            <div style="font-size: 12px; color: var(--adforget-success);"><i class="fas fa-arrow-up"></i> 8.7%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">平均客單價</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-primary);">NT$4,648</div>
+                            <div style="font-size: 12px; color: var(--adforget-success);"><i class="fas fa-arrow-up"></i> 6.1%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">總毛利</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-primary);">NT$308K</div>
+                            <div style="font-size: 12px; color: var(--adforget-success);"><i class="fas fa-arrow-up"></i> 12.4%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>通路</th>
+                            <th>營收</th>
+                            <th>訂單</th>
+                            <th>客單價</th>
+                            <th>廣告費</th>
+                            <th>ROAS</th>
+                            <th>毛利</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2025-06-10</td><td>蝦皮</td><td>NT$28,200</td><td>6</td><td>NT$4,700</td><td>NT$1,800</td><td><span style="color: var(--adforget-success);">15.7</span></td><td>NT$10,260</td></tr>
+                        <tr><td>2025-06-09</td><td>Momo</td><td>NT$45,600</td><td>9</td><td>NT$5,067</td><td>NT$3,200</td><td><span style="color: var(--adforget-success);">14.3</span></td><td>NT$16,380</td></tr>
+                        <tr><td>2025-06-08</td><td>蝦皮</td><td>NT$18,900</td><td>4</td><td>NT$4,725</td><td>NT$1,500</td><td><span style="color: var(--adforget-success);">12.6</span></td><td>NT$6,804</td></tr>
+                        <tr><td>2025-06-07</td><td>官網</td><td>NT$62,000</td><td>12</td><td>NT$5,167</td><td>NT$5,500</td><td><span style="color: var(--adforget-success);">11.3</span></td><td>NT$22,320</td></tr>
+                        <tr><td>2025-06-06</td><td>PChome</td><td>NT$15,400</td><td>3</td><td>NT$5,133</td><td>NT$1,200</td><td><span style="color: var(--adforget-warning);">12.8</span></td><td>NT$5,544</td></tr>
+                        <tr><td>2025-06-05</td><td>蝦皮</td><td>NT$33,800</td><td>7</td><td>NT$4,829</td><td>NT$2,800</td><td><span style="color: var(--adforget-success);">12.1</span></td><td>NT$12,168</td></tr>
+                        <tr><td>2025-06-04</td><td>Momo</td><td>NT$51,200</td><td>10</td><td>NT$5,120</td><td>NT$4,100</td><td><span style="color: var(--adforget-success);">12.5</span></td><td>NT$18,432</td></tr>
+                    </tbody>
+                </table>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-outline-primary btn-sm">上一頁</button>
+                    <span style="margin: 0 15px; color: #94a3b8;">第 1 / 5 頁</span>
+                    <button class="btn btn-outline-primary btn-sm">下一頁</button>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-clock"></i> 排程報表</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>報表名稱</th>
+                            <th>頻率</th>
+                            <th>發送時間</th>
+                            <th>收件人</th>
+                            <th>狀態</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>每日銷售總覽</td>
+                            <td>每日</td>
+                            <td>08:00</td>
+                            <td>admin@adforget.com</td>
+                            <td><span class="status-badge status-active">啟用中</span></td>
+                            <td><a href="#">編輯</a> <a href="#" style="color: var(--adforget-danger);">停用</a></td>
+                        </tr>
+                        <tr>
+                            <td>週度廣告成效</td>
+                            <td>每週一</td>
+                            <td>09:00</td>
+                            <td>team@adforget.com</td>
+                            <td><span class="status-badge status-active">啟用中</span></td>
+                            <td><a href="#">編輯</a> <a href="#" style="color: var(--adforget-danger);">停用</a></td>
+                        </tr>
+                        <tr>
+                            <td>月度毛利分析</td>
+                            <td>每月 1 日</td>
+                            <td>10:00</td>
+                            <td>admin@adforget.com</td>
+                            <td><span class="status-badge status-inactive">已暫停</span></td>
+                            <td><a href="#">編輯</a> <a href="#" style="color: var(--adforget-success);">啟用</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-outline-primary btn-sm"><i class="fas fa-plus"></i> 新增排程報表</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2025 <a href="#">Adforget</a> <br> 電商營運自動化平台</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/plugins.js"></script>
+<script src="./js/Popper.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+
+</body>
+</html>

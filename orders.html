@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任務紀錄 - Adforget</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900%7CPlayfair+Display:400,700,700i,900,900i%7CWork+Sans:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/plugins.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+    <style>
+        .badge { display: inline-block; padding: .25em .4em; font-size: 75%; font-weight: 700; line-height: 1; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25rem; background: #f59e0b; color: #fff; }
+        .form-control { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #475569; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
+        .form-group { margin-bottom: 1rem; }
+        .control-label { display: inline-block; margin-bottom: .5rem; font-weight: 600; }
+        .btn-primary { color: #fff; background-color: #2563eb; border-color: #2563eb; display: inline-block; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .25rem; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; cursor: pointer; }
+        .btn-primary:hover { background-color: #1d4ed8; border-color: #1e40af; }
+        .well { min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.05); }
+        .btn4 { padding: 8px 15px !important; }
+        .table { width: 100%; max-width: 100%; margin-bottom: 1rem; background-color: transparent; border-collapse: collapse; }
+        .table th, .table td { padding: .75rem; vertical-align: middle; border-top: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 14px; }
+        .table thead th { vertical-align: bottom; border-bottom: 2px solid rgba(255,255,255,0.2); font-weight: 600; }
+        .status-completed { color: #059669; }
+        .status-pending { color: #f59e0b; }
+        .status-processing { color: #0ea5e9; }
+        .status-partial { color: #f97316; }
+        .status-cancelled { color: #ef4444; }
+        .pagination { display: flex; padding-left: 0; list-style: none; border-radius: .25rem; justify-content: center; margin-top: 20px; }
+        .pagination li { margin: 0 3px; }
+        .pagination li a { position: relative; display: block; padding: .5rem .75rem; margin-left: -1px; line-height: 1.25; color: #fff; background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); text-decoration: none; }
+        .pagination li.active a { background-color: #f59e0b; border-color: #f59e0b; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .search-box .form-control { flex: 1; min-width: 150px; }
+    </style>
+
+    <!-- Adforget Brand Theme Override -->
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+        }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue) !important; border-color: var(--adforget-blue) !important; }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark) !important; border-color: var(--adforget-blue-dark) !important; }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        .well { background-color: var(--adforget-card) !important; border-color: rgba(245,158,11,0.2) !important; }
+        .service-info { border-left: 3px solid var(--adforget-primary); }
+        .payment-method.active { background: rgba(245,158,11,0.15) !important; border-color: var(--adforget-primary) !important; }
+        .pagination li.active a { background-color: var(--adforget-primary) !important; border-color: var(--adforget-primary) !important; color: #000 !important; }
+        .status-completed { color: var(--adforget-success) !important; }
+        .status-cancelled { color: var(--adforget-danger) !important; }
+        .nav-tabs li.active a { color: var(--adforget-primary) !important; border-bottom-color: var(--adforget-primary) !important; }
+        .dropdown-menu li a:hover { background: rgba(245,158,11,0.2) !important; }
+        .xs-banner { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%) !important; }
+        .funfact-icon i { color: var(--adforget-primary) !important; }
+        .agency-section-title .main-title { color: var(--adforget-primary) !important; }
+        .submit-btn { background: var(--adforget-primary) !important; color: #000 !important; }
+        .submit-btn:hover { background: var(--adforget-primary-dark) !important; }
+        .card { border-color: rgba(245,158,11,0.15) !important; }
+        .card i { color: var(--adforget-primary) !important; }
+        .service-description { color: #94a3b8 !important; }
+        .table th { color: var(--adforget-primary) !important; border-bottom-color: rgba(245,158,11,0.3) !important; }
+        .table td { border-top-color: rgba(245,158,11,0.1) !important; }
+        .form-control:focus { border-color: var(--adforget-primary) !important; box-shadow: 0 0 0 0.2rem rgba(245,158,11,0.25) !important; }
+        .btn-secondary { background-color: #475569 !important; border-color: #475569 !important; }
+        .btn-secondary:hover { background-color: #334155 !important; }
+        .api-key-box { border-left: 3px solid var(--adforget-primary); }
+    </style>
+
+</head>
+<body>
+
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./neworder.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;">
+                    <a style="color: #fff;font-size: 15px; margin-left: 40px;">
+                        <span class="badge">NT$ 2,572</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper ">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./dashboard.html">營運儀表板</a></li>
+                    <li><a class="btn4" href="./neworder.html">新增行銷任務</a></li>
+                    <li class="active"><a class="btn4" href="./orders.html">任務紀錄</a></li>
+                    <li><a class="btn4" href="./shipping.html">出貨管理</a></li>
+                    <li><a class="btn4" href="./materials.html">素材庫</a></li>
+                    <li><a class="btn4" href="./kol.html">KOL管理</a></li>
+                    <li><a class="btn4" href="./reports.html">報表中心</a></li>
+                    <li><a class="btn4" href="./integrations.html">平台整合</a></li>
+                    <li><a class="btn4" href="./team.html">團隊</a></li>
+                    <li><a class="btn4" href="./addfunds.html">帳戶儲值</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./settings.html">設定</a></li>
+                    <li><a><span class="badge">NT$ 28,200</span></a></li>
+                    <li><a href="./account.html">帳戶設定</a></li>
+                    <li><a href="./index.html">退出登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container" style="color:#ffffff;">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="well">
+        <h3 style="margin-bottom: 25px; text-align: center;">任務紀錄</h3>
+        
+        <div class="search-box">
+            <input type="text" class="form-control" placeholder="搜尋訂單ID...">
+            <select class="form-control" style="max-width: 150px;">
+                <option value="">全部狀態</option>
+                <option value="completed">已完成</option>
+                <option value="pending">待處理</option>
+                <option value="processing">處理中</option>
+                <option value="partial">部分完成</option>
+                <option value="cancelled">已取消</option>
+            </select>
+            <button class="btn btn-primary"><i class="fas fa-search"></i> 搜尋</button>
+        </div>
+        
+        <div style="overflow-x: auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>訂單ID</th>
+                    <th>日期</th>
+                    <th>服務項目</th>
+                    <th>連結</th>
+                    <th>數量</th>
+                    <th>已完成</th>
+                    <th>成本</th>
+                    <th>狀態</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#10258</td>
+                    <td>2025-01-20 10:23</td>
+                    <td>Instagram台灣粉絲</td>
+                    <td><a href="#" style="color: #f59e0b;">instagram.com/...</a></td>
+                    <td>500</td>
+                    <td>487</td>
+                    <td>NT$ 1,310</td>
+                    <td><span class="status-completed">已完成</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10257</td>
+                    <td>2025-01-19 16:45</td>
+                    <td>Facebook貼文讚</td>
+                    <td><a href="#" style="color: #f59e0b;">facebook.com/...</a></td>
+                    <td>200</td>
+                    <td>200</td>
+                    <td>NT$ 360</td>
+                    <td><span class="status-completed">已完成</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10256</td>
+                    <td>2025-01-19 09:12</td>
+                    <td>Youtube影片觀看次數</td>
+                    <td><a href="#" style="color: #f59e0b;">youtube.com/...</a></td>
+                    <td>5000</td>
+                    <td>3200</td>
+                    <td>NT$ 1,245</td>
+                    <td><span class="status-processing">處理中</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10255</td>
+                    <td>2025-01-18 14:30</td>
+                    <td>蝦皮賣場粉絲</td>
+                    <td><a href="#" style="color: #f59e0b;">shopee.tw/...</a></td>
+                    <td>300</td>
+                    <td>300</td>
+                    <td>NT$ 1,350</td>
+                    <td><span class="status-completed">已完成</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10254</td>
+                    <td>2025-01-17 20:05</td>
+                    <td>Instagram貼文按讚</td>
+                    <td><a href="#" style="color: #f59e0b;">instagram.com/...</a></td>
+                    <td>1000</td>
+                    <td>850</td>
+                    <td>NT$ 300</td>
+                    <td><span class="status-partial">部分完成</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10253</td>
+                    <td>2025-01-16 11:20</td>
+                    <td>Facebook直播人數【Ｂ系統】</td>
+                    <td><a href="#" style="color: #f59e0b;">facebook.com/...</a></td>
+                    <td>500</td>
+                    <td>0</td>
+                    <td>NT$ 370</td>
+                    <td><span class="status-pending">待處理</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10252</td>
+                    <td>2025-01-15 08:45</td>
+                    <td>TikTok全球粉絲</td>
+                    <td><a href="#" style="color: #f59e0b;">tiktok.com/...</a></td>
+                    <td>2000</td>
+                    <td>2000</td>
+                    <td>NT$ 840</td>
+                    <td><span class="status-completed">已完成</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10251</td>
+                    <td>2025-01-14 22:10</td>
+                    <td>Threads台灣讚</td>
+                    <td><a href="#" style="color: #f59e0b;">threads.net/...</a></td>
+                    <td>500</td>
+                    <td>0</td>
+                    <td>NT$ 295</td>
+                    <td><span class="status-cancelled">已取消</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10250</td>
+                    <td>2025-01-14 15:30</td>
+                    <td>Line@官方社群人數</td>
+                    <td><a href="#" style="color: #f59e0b;">line.me/...</a></td>
+                    <td>200</td>
+                    <td>200</td>
+                    <td>NT$ 956</td>
+                    <td><span class="status-completed">已完成</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+                <tr>
+                    <td>#10249</td>
+                    <td>2025-01-13 09:00</td>
+                    <td>Instagram全球真人讚</td>
+                    <td><a href="#" style="color: #f59e0b;">instagram.com/...</a></td>
+                    <td>500</td>
+                    <td>500</td>
+                    <td>NT$ 1,500</td>
+                    <td><span class="status-completed">已完成</span></td>
+                    <td><a href="#" style="color: #f59e0b;">詳情</a></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        
+        <ul class="pagination">
+            <li><a href="#">上一頁</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">下一頁</a></li>
+        </ul>
+        
+        <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 15px; margin-top: 20px; font-size: 14px; color: #ccc;">
+            <p style="margin: 0;"><strong>狀態說明：</strong></p>
+            <p style="margin: 5px 0 0 0;">
+                <span style="color: #059669;">● 已完成</span> = 訂單已全數完成 &nbsp;
+                <span style="color: #f59e0b;">● 待處理</span> = 訂單已提交，等待系統處理 &nbsp;
+                <span style="color: #0ea5e9;">● 處理中</span> = 正在執行中 &nbsp;
+                <span style="color: #f97316;">● 部分完成</span> = 部分數量已完成 &nbsp;
+                <span style="color: #ef4444;">● 已取消</span> = 訂單已取消
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2020 <a href="#">Adforget</a> <br>  Contact us:a29184987@hotmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/plugins.js"></script>
+<script src="./js/Popper.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+
+</body>
+</html>

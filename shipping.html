@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出貨管理 - Adforget</title>
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/plugins.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-warning: #f97316;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+            --adforget-border: rgba(245,158,11,0.15);
+        }
+        body { background: var(--adforget-bg); color: #e2e8f0; }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue); border-color: var(--adforget-blue); }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark); border-color: var(--adforget-blue-dark); }
+        .btn-outline-primary { color: var(--adforget-primary); border-color: var(--adforget-primary); background: transparent; }
+        .btn-outline-primary:hover { background: var(--adforget-primary); color: #000; }
+        .btn-success { background-color: var(--adforget-success); border-color: var(--adforget-success); }
+        .btn-danger { background-color: var(--adforget-danger); border-color: var(--adforget-danger); }
+        .btn-sm { padding: 5px 12px; font-size: 13px; }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        .btn4 { padding: 8px 15px !important; }
+        .well { background-color: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 8px; padding: 25px; }
+        .form-control { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; border: 1px solid #475569; border-radius: .25rem; }
+        .form-group { margin-bottom: 1rem; }
+        .control-label { display: inline-block; margin-bottom: .5rem; font-weight: 600; color: #e2e8f0; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th { padding: 12px; color: var(--adforget-primary); font-size: 14px; border-bottom: 2px solid var(--adforget-border); text-align: left; }
+        .table td { padding: 12px; border-bottom: 1px solid var(--adforget-border); font-size: 14px; color: #cbd5e1; }
+        .table tr:hover td { background: rgba(245,158,11,0.05); }
+        .section-card { background: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .section-card h3 { color: var(--adforget-primary); font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; }
+        .status-active { background: rgba(5,150,105,0.2); color: var(--adforget-success); }
+        .status-pending { background: rgba(249,115,22,0.2); color: var(--adforget-warning); }
+        .status-inactive { background: rgba(239,68,68,0.2); color: var(--adforget-danger); }
+        .status-draft { background: rgba(148,163,184,0.2); color: #94a3b8; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .search-box .form-control { flex: 1; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--adforget-border); color: #cbd5e1; margin: 2px; }
+        .tag-primary { border-color: var(--adforget-primary); color: var(--adforget-primary); }
+        .tag-success { border-color: var(--adforget-success); color: var(--adforget-success); }
+        .tag-danger { border-color: var(--adforget-danger); color: var(--adforget-danger); }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--adforget-primary), var(--adforget-primary-dark)); display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; font-size: 16px; }
+        .progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .progress-bar .fill { height: 100%; background: var(--adforget-primary); border-radius: 4px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .mini-card { background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; padding: 15px; text-align: center; }
+        .mini-card:hover { border-color: var(--adforget-primary); }
+        .toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #475569; border-radius: 24px; transition: .3s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .3s; }
+        input:checked + .toggle-slider { background: var(--adforget-primary); }
+        input:checked + .toggle-slider:before { transform: translateX(20px); }
+        .platform-connect { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; margin-bottom: 10px; }
+        .platform-connect .info { display: flex; align-items: center; gap: 15px; }
+        .platform-connect .info i { font-size: 28px; }
+        .platform-connect .info h4 { margin: 0; font-size: 16px; color: #e2e8f0; }
+        .platform-connect .info p { margin: 0; font-size: 13px; color: #94a3b8; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: #1e293b; border: 1px solid var(--adforget-border); border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; }
+        .modal-content h3 { color: var(--adforget-primary); margin-bottom: 20px; }
+        .close-modal { float: right; color: #94a3b8; cursor: pointer; font-size: 20px; }
+        .close-modal:hover { color: #e2e8f0; }
+    </style>
+</head>
+<body>
+
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./dashboard.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;">
+                    <a style="color: #fff;font-size: 15px; margin-left: 40px;">
+                        <span class="badge">NT$ 28,200</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./dashboard.html">營運儀表板</a></li>
+                    <li><a class="btn4" href="./neworder.html">新增行銷任務</a></li>
+                    <li><a class="btn4" href="./orders.html">任務紀錄</a></li>
+                    <li class="active"><a class="btn4" href="./shipping.html">出貨管理</a></li>
+                    <li><a class="btn4" href="./materials.html">素材庫</a></li>
+                    <li><a class="btn4" href="./kol.html">KOL管理</a></li>
+                    <li><a class="btn4" href="./reports.html">報表中心</a></li>
+                    <li><a class="btn4" href="./integrations.html">平台整合</a></li>
+                    <li><a class="btn4" href="./team.html">團隊</a></li>
+                    <li><a class="btn4" href="./addfunds.html">帳戶儲值</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./settings.html">設定</a></li>
+                    <li><a><span class="badge">NT$ 28,200</span></a></li>
+                    <li><a href="./account.html">帳戶設定</a></li>
+                    <li><a href="./index.html">退出登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="section-card">
+                <h3><i class="fas fa-filter"></i> 篩選條件</h3>
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">訂單狀態</label>
+                        <select class="form-control">
+                            <option>全部狀態</option>
+                            <option>待出貨</option>
+                            <option>已出貨</option>
+                            <option>運送中</option>
+                            <option>已送達</option>
+                            <option>異常/退貨</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">銷售平台</label>
+                        <select class="form-control">
+                            <option>全部平台</option>
+                            <option>蝦皮</option>
+                            <option>Momo</option>
+                            <option>PChome</option>
+                            <option>官網</option>
+                            <option>寄賣</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">物流方式</label>
+                        <select class="form-control">
+                            <option>全部物流</option>
+                            <option>7-11 交貨便</option>
+                            <option>全家店到店</option>
+                            <option>黑貓宅急便</option>
+                            <option>新竹物流</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">日期範圍</label>
+                        <select class="form-control">
+                            <option>今日</option>
+                            <option>近 7 天</option>
+                            <option selected>近 30 天</option>
+                            <option>自訂範圍</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sync"></i> 套用篩選</button>
+                </form>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-chart-bar"></i> 出貨統計</h3>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">待出貨</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-warning);">12</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">今日已出</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-success);">8</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">運送中</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-primary);">23</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">異常件</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-danger);">2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="section-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0;"><i class="fas fa-shipping-fast"></i> 訂單列表</h3>
+                    <div>
+                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-print"></i> 列印出貨單</button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-box"></i> 批量出貨</button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>訂單編號</th>
+                            <th>平台</th>
+                            <th>品項</th>
+                            <th>數量</th>
+                            <th>買家</th>
+                            <th>物流</th>
+                            <th>狀態</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>SP-250611-001</td>
+                            <td><span class="tag" style="border-color: #ee4d2d; color: #ee4d2d;">蝦皮</span></td>
+                            <td>X23 奧丁之聲</td>
+                            <td>1</td>
+                            <td>陳**</td>
+                            <td>7-11 交貨便</td>
+                            <td><span class="status-badge status-pending">待出貨</span></td>
+                            <td><a href="#">出貨</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>SP-250611-002</td>
+                            <td><span class="tag" style="border-color: #ee4d2d; color: #ee4d2d;">蝦皮</span></td>
+                            <td>X23 + 麥克風組合</td>
+                            <td>2</td>
+                            <td>林**</td>
+                            <td>黑貓宅急便</td>
+                            <td><span class="status-badge status-pending">待出貨</span></td>
+                            <td><a href="#">出貨</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>WA-250610-089</td>
+                            <td><span class="tag" style="border-color: #4ade80; color: #4ade80;">官網</span></td>
+                            <td>X23 奧丁之聲</td>
+                            <td>1</td>
+                            <td>王**</td>
+                            <td>新竹物流</td>
+                            <td><span class="status-badge status-active">運送中</span></td>
+                            <td><a href="#">追蹤</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>MM-250610-045</td>
+                            <td><span class="tag" style="border-color: #00a0e9; color: #00a0e9;">Momo</span></td>
+                            <td>X23 奧丁之聲</td>
+                            <td>1</td>
+                            <td>張**</td>
+                            <td>全家店到店</td>
+                            <td><span class="status-badge status-active">已送達</span></td>
+                            <td><a href="#">詳情</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>SP-250609-112</td>
+                            <td><span class="tag" style="border-color: #ee4d2d; color: #ee4d2d;">蝦皮</span></td>
+                            <td>X23 奧丁之聲</td>
+                            <td>1</td>
+                            <td>李**</td>
+                            <td>7-11 交貨便</td>
+                            <td><span class="status-badge status-inactive">退貨申請</span></td>
+                            <td><a href="#">處理</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>PC-250609-023</td>
+                            <td><span class="tag" style="border-color: #0066cc; color: #0066cc;">PChome</span></td>
+                            <td>X23 + 收納包</td>
+                            <td>1</td>
+                            <td>黃**</td>
+                            <td>黑貓宅急便</td>
+                            <td><span class="status-badge status-active">運送中</span></td>
+                            <td><a href="#">追蹤</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-outline-primary btn-sm">上一頁</button>
+                    <span style="margin: 0 15px; color: #94a3b8;">第 1 / 8 頁</span>
+                    <button class="btn btn-outline-primary btn-sm">下一頁</button>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-exclamation-triangle"></i> 異常處理</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>訂單編號</th>
+                            <th>問題類型</th>
+                            <th>說明</th>
+                            <th>買家聯繫</th>
+                            <th>期限</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SP-250609-112</td>
+                            <td><span class="tag tag-danger">退貨申請</span></td>
+                            <td>買家表示商品有瑕疵，要求退貨</td>
+                            <td>已發送訊息</td>
+                            <td>2025-06-13</td>
+                            <td><a href="#">處理</a></td>
+                        </tr>
+                        <tr>
+                            <td>WA-250608-076</td>
+                            <td><span class="tag tag-warning">地址錯誤</span></td>
+                            <td>買家填寫地址不完整，物流無法配送</td>
+                            <td>待聯繫</td>
+                            <td>2025-06-12</td>
+                            <td><a href="#">處理</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2025 <a href="#">Adforget</a> <br> 電商營運自動化平台</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/plugins.js"></script>
+<script src="./js/Popper.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+
+</body>
+</html>

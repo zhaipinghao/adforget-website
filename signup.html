@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adforget－買粉絲按讚系統</title>
+    <meta name="keywords" content="臉書買讚,臉書按讚,臉書粉絲,直播人數,FB買讚,FB買粉絲,FB人氣,ig買讚,ig買粉絲,ig人氣,網美推薦,網美拍照,Adforget,Adforget,台灣按讚,ig台灣讚,ig台灣粉絲,fb台灣粉絲,fb台灣按讚,台灣真人按讚,網軍,fb,ig,youtube,網美地點,網美人氣,人氣增加,粉絲增加,fb增粉,ig增粉,hdz,買讚,買粉絲,衝人氣,網軍留言,帶風向,facebook買讚,instagram買讚,facebook買粉絲,facebook">
+    <meta name="description" content="專業行銷人員的數位廣告自動化工具，整合社群媒體投放、數據追蹤與成效優化">
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900%7CPlayfair+Display:400,700,700i,900,900i%7CWork+Sans:400,500,600,700" rel="stylesheet">
+    <link rel="canonical" href="https://adforgetw.com/" />
+
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/9ab0a7/pp84xrnqqd3bgl0d.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/9ab0a7/o082y8budnrx1py5.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/libs/bootstrap-datetimepicker/4.17.47/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/css/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/tbnezhijk3f7fiud.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/iq3lapomcplioun9.css">
+    <link rel="stylesheet" href="./css/plugins.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+
+    <!-- Adforget Brand Theme Override -->
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+        }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue) !important; border-color: var(--adforget-blue) !important; }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark) !important; border-color: var(--adforget-blue-dark) !important; }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        .well { background-color: var(--adforget-card) !important; border-color: rgba(245,158,11,0.2) !important; }
+        .service-info { border-left: 3px solid var(--adforget-primary); }
+        .payment-method.active { background: rgba(245,158,11,0.15) !important; border-color: var(--adforget-primary) !important; }
+        .pagination li.active a { background-color: var(--adforget-primary) !important; border-color: var(--adforget-primary) !important; color: #000 !important; }
+        .status-completed { color: var(--adforget-success) !important; }
+        .status-cancelled { color: var(--adforget-danger) !important; }
+        .nav-tabs li.active a { color: var(--adforget-primary) !important; border-bottom-color: var(--adforget-primary) !important; }
+        .dropdown-menu li a:hover { background: rgba(245,158,11,0.2) !important; }
+        .xs-banner { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%) !important; }
+        .funfact-icon i { color: var(--adforget-primary) !important; }
+        .agency-section-title .main-title { color: var(--adforget-primary) !important; }
+        .submit-btn { background: var(--adforget-primary) !important; color: #000 !important; }
+        .submit-btn:hover { background: var(--adforget-primary-dark) !important; }
+        .card { border-color: rgba(245,158,11,0.15) !important; }
+        .card i { color: var(--adforget-primary) !important; }
+        .service-description { color: #94a3b8 !important; }
+        .table th { color: var(--adforget-primary) !important; border-bottom-color: rgba(245,158,11,0.3) !important; }
+        .table td { border-top-color: rgba(245,158,11,0.1) !important; }
+        .form-control:focus { border-color: var(--adforget-primary) !important; box-shadow: 0 0 0 0.2rem rgba(245,158,11,0.25) !important; }
+        .btn-secondary { background-color: #475569 !important; border-color: #475569 !important; }
+        .btn-secondary:hover { background-color: #334155 !important; }
+        .api-key-box { border-left: 3px solid var(--adforget-primary); }
+    </style>
+
+</head>
+<body>
+
+<!-- Header -->
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./index.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;"></div>
+            </div>
+            <div class="nav-menus-wrapper">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li class="active"><a class="btn4" href="./signup.html">註冊帳號</a></li>
+                    <li><a class="btn4" href="./index.html">登入平台</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="https://lin.ee/84HLE2A">聯絡我們</a></li>
+                    <li><a class="btn4" href="./terms.html">使用條款</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="well">
+                <h2 style="color: #ffffff; text-align: center; margin-bottom: 30px;">註冊新會員</h2>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="username" class="control-label" style="color: #ffffff;">帳號</label>
+                        <input type="text" class="form-control" id="username" value="" name="RegistrationForm[login]">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label" style="color: #ffffff;">Email</label>
+                        <input type="email" class="form-control" id="email" value="" name="RegistrationForm[email]">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label" style="color: #ffffff;">密碼</label>
+                        <input type="password" class="form-control" id="password" name="RegistrationForm[password]">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm" class="control-label" style="color: #ffffff;">再次確認密碼</label>
+                        <input type="password" class="form-control" id="confirm" name="RegistrationForm[password_again]">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" class="terms-accept-checkbox" name="RegistrationForm[termsofservice]">
+                                <span style="color:#ffffff; margin-left: 10px;">我已經閱讀並且同意</span>
+                                <a style="font-weight: bold; margin-left: 10px;" href="./terms.html" target="_blank">使用規章</a>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">註冊</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2020 <a href="#">Adforget</a> <br> Contact us:a29184987@hotmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+<script>
+// Counter animation
+$(document).ready(function() {
+    $('[data-value]').each(function() {
+        const $el = $(this);
+        const val = $el.data('value');
+        const duration = $el.data('animation-duration') || 2000;
+        $el.text('0');
+        $el.waypoint(function() {
+            $el.prop('Counter', 0).animate({
+                Counter: val
+            }, {
+                duration: duration,
+                easing: 'swing',
+                step: function (now) {
+                    $el.text(Math.ceil(now));
+                }
+            });
+            this.destroy();
+        }, { offset: '80%' });
+    });
+});
+</script>
+
+<script src="https://adforgetw2dt.com/soc/assets/js/plugins.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/Popper.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/bootstrap.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/owl.carousel.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/scrollax.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.waypoints.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/isotope.pkgd.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/swiper.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.easypiechart.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/delighters.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/typed.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.parallax.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.themepunch.tools.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.themepunch.revolution.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/skrollr.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/shuffle-letters.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/main.js"></script>
+
+</body>
+</html>

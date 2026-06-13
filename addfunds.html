@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帳戶儲值 - Adforget</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900%7CPlayfair+Display:400,700,700i,900,900i%7CWork+Sans:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/plugins.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+    <style>
+        .badge { display: inline-block; padding: .25em .4em; font-size: 75%; font-weight: 700; line-height: 1; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25rem; background: #f59e0b; color: #fff; }
+        .form-control { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #475569; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
+        .form-group { margin-bottom: 1rem; }
+        .control-label { display: inline-block; margin-bottom: .5rem; font-weight: 600; }
+        .btn-primary { color: #fff; background-color: #2563eb; border-color: #2563eb; display: inline-block; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .25rem; transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; cursor: pointer; }
+        .btn-primary:hover { background-color: #1d4ed8; border-color: #1e40af; }
+        .well { min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.05); }
+        .payment-method { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 20px; margin-bottom: 15px; cursor: pointer; transition: all 0.3s; }
+        .payment-method:hover, .payment-method.active { background: rgba(113,118,218,0.2); border-color: #f59e0b; }
+        .payment-method i { font-size: 24px; margin-right: 15px; color: #f59e0b; }
+        .payment-method h4 { margin: 0 0 5px 0; font-size: 16px; color: #fff; }
+        .payment-method p { margin: 0; font-size: 13px; color: #aaa; }
+        .btn4 { padding: 8px 15px !important; }
+        .table { width: 100%; max-width: 100%; margin-bottom: 1rem; background-color: transparent; border-collapse: collapse; }
+        .table th, .table td { padding: .75rem; vertical-align: top; border-top: 1px solid rgba(255,255,255,0.1); color: #fff; }
+        .table thead th { vertical-align: bottom; border-bottom: 2px solid rgba(255,255,255,0.2); }
+    </style>
+
+    <!-- Adforget Brand Theme Override -->
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+        }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue) !important; border-color: var(--adforget-blue) !important; }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark) !important; border-color: var(--adforget-blue-dark) !important; }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        .well { background-color: var(--adforget-card) !important; border-color: rgba(245,158,11,0.2) !important; }
+        .service-info { border-left: 3px solid var(--adforget-primary); }
+        .payment-method.active { background: rgba(245,158,11,0.15) !important; border-color: var(--adforget-primary) !important; }
+        .pagination li.active a { background-color: var(--adforget-primary) !important; border-color: var(--adforget-primary) !important; color: #000 !important; }
+        .status-completed { color: var(--adforget-success) !important; }
+        .status-cancelled { color: var(--adforget-danger) !important; }
+        .nav-tabs li.active a { color: var(--adforget-primary) !important; border-bottom-color: var(--adforget-primary) !important; }
+        .dropdown-menu li a:hover { background: rgba(245,158,11,0.2) !important; }
+        .xs-banner { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%) !important; }
+        .funfact-icon i { color: var(--adforget-primary) !important; }
+        .agency-section-title .main-title { color: var(--adforget-primary) !important; }
+        .submit-btn { background: var(--adforget-primary) !important; color: #000 !important; }
+        .submit-btn:hover { background: var(--adforget-primary-dark) !important; }
+        .card { border-color: rgba(245,158,11,0.15) !important; }
+        .card i { color: var(--adforget-primary) !important; }
+        .service-description { color: #94a3b8 !important; }
+        .table th { color: var(--adforget-primary) !important; border-bottom-color: rgba(245,158,11,0.3) !important; }
+        .table td { border-top-color: rgba(245,158,11,0.1) !important; }
+        .form-control:focus { border-color: var(--adforget-primary) !important; box-shadow: 0 0 0 0.2rem rgba(245,158,11,0.25) !important; }
+        .btn-secondary { background-color: #475569 !important; border-color: #475569 !important; }
+        .btn-secondary:hover { background-color: #334155 !important; }
+        .api-key-box { border-left: 3px solid var(--adforget-primary); }
+    </style>
+
+</head>
+<body>
+
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./neworder.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;">
+                    <a style="color: #fff;font-size: 15px; margin-left: 40px;">
+                        <span class="badge">NT$ 2,572</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper ">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./dashboard.html">營運儀表板</a></li>
+                    <li><a class="btn4" href="./neworder.html">新增行銷任務</a></li>
+                    <li><a class="btn4" href="./orders.html">任務紀錄</a></li>
+                    <li><a class="btn4" href="./shipping.html">出貨管理</a></li>
+                    <li><a class="btn4" href="./materials.html">素材庫</a></li>
+                    <li><a class="btn4" href="./kol.html">KOL管理</a></li>
+                    <li><a class="btn4" href="./reports.html">報表中心</a></li>
+                    <li><a class="btn4" href="./integrations.html">平台整合</a></li>
+                    <li><a class="btn4" href="./team.html">團隊</a></li>
+                    <li class="active"><a class="btn4" href="./addfunds.html">帳戶儲值</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./settings.html">設定</a></li>
+                    <li><a><span class="badge">NT$ 28,200</span></a></li>
+                    <li><a href="./account.html">帳戶設定</a></li>
+                    <li><a href="./index.html">退出登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container" style="color:#ffffff;">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="well">
+        <h3 style="margin-bottom: 25px; text-align: center;">帳戶儲值</h3>
+        
+        <div style="background-color: rgba(245,158,11,0.15); border: 2px solid rgba(245,158,11,0.3); border-radius: 12px; padding: 15px 20px; margin: 20px auto; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+            <p style="font-size: 16px; font-weight: bold; color: #f59e0b; margin: 0;">
+                💰 目前餘額：<span style="color:#f59e0b;">NT$ 2,572</span>
+            </p>
+        </div>
+        
+        <h4 style="margin: 30px 0 15px 0;">選擇儲值方式</h4>
+        
+        <div class="payment-method active" onclick="selectMethod(this)">
+            <div style="display: flex; align-items: center;">
+                <i class="fas fa-university"></i>
+                <div>
+                    <h4>銀行轉帳 / ATM</h4>
+                    <p>轉帳完成後請聯繫客服確認入帳，手續費由用戶負擔</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-method" onclick="selectMethod(this)">
+            <div style="display: flex; align-items: center;">
+                <i class="fas fa-credit-card"></i>
+                <div>
+                    <h4>信用卡 / 簽帳卡</h4>
+                    <p>支援 Visa / MasterCard / JCB，即時入帳</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-method" onclick="selectMethod(this)">
+            <div style="display: flex; align-items: center;">
+                <i class="fas fa-mobile-alt"></i>
+                <div>
+                    <h4>超商代碼繳費</h4>
+                    <p>7-11 / 全家 / 萊爾富 / OK超商，代碼繳費</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-method" onclick="selectMethod(this)">
+            <div style="display: flex; align-items: center;">
+                <i class="fab fa-line"></i>
+                <div>
+                    <h4>LINE Pay</h4>
+                    <p>使用 LINE Pay 快速付款，即時入帳</p>
+                </div>
+            </div>
+        </div>
+        
+        <h4 style="margin: 30px 0 15px 0;">儲值金額</h4>
+        
+        <form action="./addfunds.html" method="post" id="addfunds-form">
+            <div class="form-group">
+                <label for="amount" class="control-label">儲值金額 (NT$)</label>
+                <input type="number" class="form-control" id="amount" name="amount" placeholder="請輸入儲值金額，最低 NT$ 100" min="100" step="1">
+            </div>
+            
+            <div style="margin: 15px 0;">
+                <span style="display: inline-block; padding: 5px 15px; margin: 5px; background: rgba(113,118,218,0.3); border-radius: 20px; cursor: pointer; font-size: 14px;" onclick="setAmount(500)">NT$ 500</span>
+                <span style="display: inline-block; padding: 5px 15px; margin: 5px; background: rgba(113,118,218,0.3); border-radius: 20px; cursor: pointer; font-size: 14px;" onclick="setAmount(1000)">NT$ 1,000</span>
+                <span style="display: inline-block; padding: 5px 15px; margin: 5px; background: rgba(113,118,218,0.3); border-radius: 20px; cursor: pointer; font-size: 14px;" onclick="setAmount(2000)">NT$ 2,000</span>
+                <span style="display: inline-block; padding: 5px 15px; margin: 5px; background: rgba(113,118,218,0.3); border-radius: 20px; cursor: pointer; font-size: 14px;" onclick="setAmount(5000)">NT$ 5,000</span>
+                <span style="display: inline-block; padding: 5px 15px; margin: 5px; background: rgba(113,118,218,0.3); border-radius: 20px; cursor: pointer; font-size: 14px;" onclick="setAmount(10000)">NT$ 10,000</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="name" class="control-label">轉帳帳號後五碼 / 付款人姓名</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="請輸入轉帳帳號後五碼或付款人姓名，方便核對">
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 15px; margin: 20px 0; font-size: 14px; color: #ccc;">
+                <p style="margin: 0 0 10px 0;"><strong>儲值說明：</strong></p>
+                <p style="margin: 0 0 5px 0;">1. 儲值金額將直接存入您的會員餘額，可用於下單扣款。</p>
+                <p style="margin: 0 0 5px 0;">2. 銀行轉帳請於轉帳後聯繫客服或填寫後五碼，我們將盡快為您入帳。</p>
+                <p style="margin: 0 0 5px 0;">3. 超商代碼繳費需額外負擔 NT$ 30 手續費。</p>
+                <p style="margin: 0;">4. 儲值後不予退款，請確認金額後再進行儲值。</p>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 16px;">確認儲值</button>
+        </form>
+        
+        <h4 style="margin: 40px 0 15px 0;">近期儲值紀錄</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>方式</th>
+                    <th>金額</th>
+                    <th>狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025-01-15 14:32</td>
+                    <td>銀行轉帳</td>
+                    <td>NT$ 2,000</td>
+                    <td><span style="color: #059669;">✓ 已完成</span></td>
+                </tr>
+                <tr>
+                    <td>2025-01-08 09:15</td>
+                    <td>LINE Pay</td>
+                    <td>NT$ 1,000</td>
+                    <td><span style="color: #059669;">✓ 已完成</span></td>
+                </tr>
+                <tr>
+                    <td>2024-12-28 16:45</td>
+                    <td>超商代碼</td>
+                    <td>NT$ 500</td>
+                    <td><span style="color: #059669;">✓ 已完成</span></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2020 <a href="#">Adforget</a> <br>  Contact us:a29184987@hotmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/plugins.js"></script>
+<script src="./js/Popper.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+
+<script>
+function selectMethod(el) {
+    document.querySelectorAll('.payment-method').forEach(function(m) { m.classList.remove('active'); });
+    el.classList.add('active');
+}
+function setAmount(val) {
+    document.getElementById('amount').value = val;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adforget自助下單系統</title>
+    <meta name="keywords" content="臉書買讚,臉書按讚,臉書粉絲,直播人數,FB買讚,FB買粉絲,FB人氣,ig買讚,ig買粉絲,ig人氣,網美推薦,網美拍照,Adforget,Adforget,台灣按讚,ig台灣讚,ig台灣粉絲,fb台灣粉絲,fb台灣按讚,台灣真人按讚,網軍,fb,ig,youtube,網美地點,網美人氣,人氣增加,粉絲增加,fb增粉,ig增粉,hdz,買讚,買粉絲,衝人氣,網軍留言,帶風向,facebook買讚,instagram買讚,facebook買粉絲,facebook">
+    <meta name="description" content="專業行銷人員的數位廣告自動化工具，整合社群媒體投放、數據追蹤與成效優化">
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900%7CPlayfair+Display:400,700,700i,900,900i%7CWork+Sans:400,500,600,700" rel="stylesheet">
+    <link rel="canonical" href="https://adforgetw.com/" />
+
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/9ab0a7/pp84xrnqqd3bgl0d.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/9ab0a7/o082y8budnrx1py5.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/libs/bootstrap-datetimepicker/4.17.47/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/css/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/tbnezhijk3f7fiud.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/iq3lapomcplioun9.css">
+    <link rel="stylesheet" href="./css/plugins.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+
+    <!-- Adforget Brand Theme Override -->
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+        }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue) !important; border-color: var(--adforget-blue) !important; }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark) !important; border-color: var(--adforget-blue-dark) !important; }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        .well { background-color: var(--adforget-card) !important; border-color: rgba(245,158,11,0.2) !important; }
+        .service-info { border-left: 3px solid var(--adforget-primary); }
+        .payment-method.active { background: rgba(245,158,11,0.15) !important; border-color: var(--adforget-primary) !important; }
+        .pagination li.active a { background-color: var(--adforget-primary) !important; border-color: var(--adforget-primary) !important; color: #000 !important; }
+        .status-completed { color: var(--adforget-success) !important; }
+        .status-cancelled { color: var(--adforget-danger) !important; }
+        .nav-tabs li.active a { color: var(--adforget-primary) !important; border-bottom-color: var(--adforget-primary) !important; }
+        .dropdown-menu li a:hover { background: rgba(245,158,11,0.2) !important; }
+        .xs-banner { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%) !important; }
+        .funfact-icon i { color: var(--adforget-primary) !important; }
+        .agency-section-title .main-title { color: var(--adforget-primary) !important; }
+        .submit-btn { background: var(--adforget-primary) !important; color: #000 !important; }
+        .submit-btn:hover { background: var(--adforget-primary-dark) !important; }
+        .card { border-color: rgba(245,158,11,0.15) !important; }
+        .card i { color: var(--adforget-primary) !important; }
+        .service-description { color: #94a3b8 !important; }
+        .table th { color: var(--adforget-primary) !important; border-bottom-color: rgba(245,158,11,0.3) !important; }
+        .table td { border-top-color: rgba(245,158,11,0.1) !important; }
+        .form-control:focus { border-color: var(--adforget-primary) !important; box-shadow: 0 0 0 0.2rem rgba(245,158,11,0.25) !important; }
+        .btn-secondary { background-color: #475569 !important; border-color: #475569 !important; }
+        .btn-secondary:hover { background-color: #334155 !important; }
+        .api-key-box { border-left: 3px solid var(--adforget-primary); }
+    </style>
+
+</head>
+<body>
+
+<!-- Header -->
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./index.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;"></div>
+            </div>
+            <div class="nav-menus-wrapper">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./signup.html">註冊帳號</a></li>
+                    <li><a class="btn4" href="./index.html">登入平台</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="https://lin.ee/84HLE2A">聯絡我們</a></li>
+                    <li class="active"><a class="btn4" href="./terms.html">使用條款</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="well">
+                <h3 class="terms" style="color: #ffffff;">使用規章</h3>
+                <div class="otitle"><font color="#ffffff">使用條款</font></div>
+                <div style="background-color: #f59e0b; border-radius: 4px; text-align: center; padding: 5px 3px; margin: 30px auto; width: 320px;">
+                    <font color="#ffffff">請詳閱以下內容<br>如因個人因素操作錯誤導致訂單沒有運行則不接受任何售後處理</font>
+                </div>
+                <p style="color: rgb(255, 255, 255);">⚠️請不要相同時間對相同的網址使用相同的服務，例如：已經送出某個網址的增加讚/增加粉絲需求，又重複再送出一次，有可能導致系統誤判，導致少刷給你，這部份我們不會補償給你，我們建議提交後，等確定執行完畢後，再提交同樣網址的訂單。</p>
+                <p style="color: rgb(255, 255, 255);">⚠️若不懂系統如何使用，強烈建議您先詢問管理人員 (LINE: @rmc3248g）</p>
+                <p style="color: rgb(255, 255, 255);">⚠️訂單提交後，就無法進行退款、退訂、修改（網址、內容、數量）</p>
+                <p style="color: rgb(255, 255, 255);">⚠️所有項目都是違反社群網站規則的消耗品，不論粉絲、按讚、留言運作後都會滅少，同意在加值下單</p>
+                <p style="color: rgb(255, 255, 255);">⚠️如因個人因素（如：啟動任務時網址錯誤、網址不完整、私密無公開、訂單運行中該網址失效、末公開按讚或留言功能、使用全球服務沒有公開所有國家…等）導致沒有收到產品恕不接受任何退款或更換項目</p>
+                <p style="color: rgb(255, 255, 255);">⚠️網站內售價會因供應商系統價格調動、使用者下單錯誤率、特惠活動...等因素而會有所調整，而非固定不變</p>
+                
+                <div style="color: rgb(255, 255, 255); background-color: #f59e0b; border-radius: 4px; text-align: center; padding: 5px 3px; margin: 40px auto; width: 320px;"></div>
+                
+                <div class="otitle" style="color: rgb(255, 255, 255);"><font color="#ffffff">服務規章</font></div>
+                <p style="color: #ffffff;">我們公司是合法成立的有限公司，旗下提供了Adforget按讚下單平台（以下簡稱甲方），網址為【https://adforgetw.com/】，本平台致力於幫助會員（註冊會員以下簡稱乙方）提高第三方社交與社群媒體（包括但不限於 facebook、instagram、YouTube、抖音等）相關的流量、讚數、觀看數等，由於甲方平台是操作第三方社交與社群媒體（以下簡稱第三方平台），都有可能因第三方平台更新或防範等各類因素，導致部分服務無法運作，故帳戶儲值前請詳閱以下須知悉說明並且完全同意後再行儲值，儲值後代表已同意以下所有規章說明並且必須遵守，如有違反規範，本公司一概無需承擔會員個人行為衍伸之法律責任：</p>
+                <p style="color: #ffffff;">1.當充值金額至甲方平台後，除系統超過60天無法執行或不可抗拒之因素外，否則乙方不得以任何理由要求退款，如遇到不可控之因素退款，由以下方式進行辦理：</p>
+                <p style="color: #ffffff;">(1) 甲方僅於退款該帳戶餘額之７０％金額</p>
+                <p style="color: #ffffff;">(2) 乙方須提供本人身分證及退款銀行存摺封面，由甲方核對身份無誤後方可辦理</p>
+                <p style="color: #ffffff;">(3) 甲方退款統一採用銀行轉帳方式辦理</p>
+                <p style="color: #ffffff;">(4) 若乙方帳號的儲值款項有牽涉法律方面爭議，甲方有權停權乙方帳號，並等待爭議款經法院判決無違法後方可恢復乙方帳號使用權限，在停權期間不可申請儲值金退回</p>
+                <p style="color: #ffffff;">2.甲方所提供之服務為自動化處理，也與多家相關國內、外廠商合作，從付款、入帳至啟動任務，皆為網站後台自動處理，故甲方並無法知悉每一筆訂單執行狀況與執行與否，故乙方若發生訂單未執行等情況，請主動聯繫甲方，若訂單長達一個月未執行，而乙方卻無主動通報甲方，由於責任難以釐清，甲方將不做任何相關補償措施。</p>
+                <p style="color: #ffffff;">3.當乙方下單甲方的服務後，訂單在未執行的情況下，甲方服務若因第三方平台更新關係，導致服務無法使用或無法運行，且期限達30天，乙方可與甲方提出退款之要求。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2020 <a href="#">Adforget</a> <br> Contact us:a29184987@hotmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+<script>
+// Counter animation
+$(document).ready(function() {
+    $('[data-value]').each(function() {
+        const $el = $(this);
+        const val = $el.data('value');
+        const duration = $el.data('animation-duration') || 2000;
+        $el.text('0');
+        $el.waypoint(function() {
+            $el.prop('Counter', 0).animate({
+                Counter: val
+            }, {
+                duration: duration,
+                easing: 'swing',
+                step: function (now) {
+                    $el.text(Math.ceil(now));
+                }
+            });
+            this.destroy();
+        }, { offset: '80%' });
+    });
+});
+</script>
+
+<script src="https://adforgetw2dt.com/soc/assets/js/plugins.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/Popper.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/bootstrap.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/owl.carousel.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/scrollax.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.waypoints.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/isotope.pkgd.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/swiper.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.easypiechart.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/delighters.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/typed.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.parallax.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.themepunch.tools.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.themepunch.revolution.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/skrollr.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/shuffle-letters.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adforget-數位廣告投放與Adforget自動化平台</title>
+    <meta name="keywords" content="臉書買讚,臉書按讚,臉書粉絲,直播人數,FB買讚,FB買粉絲,FB人氣,ig買讚,ig買粉絲,ig人氣,網美推薦,網美拍照,Adforget,Adforget,台灣按讚,ig台灣讚,ig台灣粉絲,fb台灣粉絲,fb台灣按讚,台灣真人按讚,網軍,fb,ig,youtube,網美地點,網美人氣,人氣增加,粉絲增加,fb增粉,ig增粉,hdz,買讚,買粉絲,衝人氣,網軍留言,帶風向,facebook買讚,instagram買讚,facebook買粉絲,facebook">
+    <meta name="description" content="專業行銷人員的數位廣告自動化工具，整合社群媒體投放、數據追蹤與成效優化">
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900%7CPlayfair+Display:400,700,700i,900,900i%7CWork+Sans:400,500,600,700" rel="stylesheet">
+    <link rel="canonical" href="https://adforgetw.com/" />
+
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/9ab0a7/pp84xrnqqd3bgl0d.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/9ab0a7/o082y8budnrx1py5.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/libs/bootstrap-datetimepicker/4.17.47/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/css/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/tbnezhijk3f7fiud.css">
+    <link rel="stylesheet" type="text/css" href="https://storage.perfectcdn.com/global/iq3lapomcplioun9.css">
+    <link rel="stylesheet" href="./css/plugins.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+
+    <!-- Adforget Brand Theme Override -->
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+        }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue) !important; border-color: var(--adforget-blue) !important; }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark) !important; border-color: var(--adforget-blue-dark) !important; }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        .well { background-color: var(--adforget-card) !important; border-color: rgba(245,158,11,0.2) !important; }
+        .service-info { border-left: 3px solid var(--adforget-primary); }
+        .payment-method.active { background: rgba(245,158,11,0.15) !important; border-color: var(--adforget-primary) !important; }
+        .pagination li.active a { background-color: var(--adforget-primary) !important; border-color: var(--adforget-primary) !important; color: #000 !important; }
+        .status-completed { color: var(--adforget-success) !important; }
+        .status-cancelled { color: var(--adforget-danger) !important; }
+        .nav-tabs li.active a { color: var(--adforget-primary) !important; border-bottom-color: var(--adforget-primary) !important; }
+        .dropdown-menu li a:hover { background: rgba(245,158,11,0.2) !important; }
+        .xs-banner { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%) !important; }
+        .funfact-icon i { color: var(--adforget-primary) !important; }
+        .agency-section-title .main-title { color: var(--adforget-primary) !important; }
+        .submit-btn { background: var(--adforget-primary) !important; color: #000 !important; }
+        .submit-btn:hover { background: var(--adforget-primary-dark) !important; }
+        .card { border-color: rgba(245,158,11,0.15) !important; }
+        .card i { color: var(--adforget-primary) !important; }
+        .service-description { color: #94a3b8 !important; }
+        .table th { color: var(--adforget-primary) !important; border-bottom-color: rgba(245,158,11,0.3) !important; }
+        .table td { border-top-color: rgba(245,158,11,0.1) !important; }
+        .form-control:focus { border-color: var(--adforget-primary) !important; box-shadow: 0 0 0 0.2rem rgba(245,158,11,0.25) !important; }
+        .btn-secondary { background-color: #475569 !important; border-color: #475569 !important; }
+        .btn-secondary:hover { background-color: #334155 !important; }
+        .api-key-box { border-left: 3px solid var(--adforget-primary); }
+    </style>
+
+</head>
+<body>
+
+<!-- Header -->
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./index.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;"></div>
+            </div>
+            <div class="nav-menus-wrapper">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./signup.html">註冊帳號</a></li>
+                    <li class="active"><a class="btn4" href="./index.html">登入平台</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="https://lin.ee/84HLE2A">聯絡我們</a></li>
+                    <li><a class="btn4" href="./terms.html">使用條款</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div style="margin-top: 5%;">&nbsp;</div>
+
+<!-- banner section -->
+<section class="xs-banner agency-banner banner-1" data-scrollax-parent="true">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 align-self-center">
+                <div class="agency-banner-content">
+                    <h1 class="banner-title"><img src="./images/head.png" alt="Adforget"></h1>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="agency-banner-img">
+                    <img src="./images/head2.png" data-scrollax="properties: { translateY: '25%' }" alt="so banner image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-icon-image"></div>
+</section>
+
+<!-- company intro section -->
+<section class="xs-section-padding gray-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <br><br/>
+                <div id="login" class="agency-intro">
+                    <div class="agency-section-title">
+                        <h4 class="main-title" style="color: #000;">登入 Adforget</h4>
+                    </div>
+                    <p>還沒有帳號？立即加入 Adforget！ <a style="color: #2563eb;" href="./signup.html">加入我們</a></p>
+                    <div class="from-wraper">
+                        <form class="contact-form" method="post" action="./dashboard.html">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="帳號" id="username" name="LoginForm[username]" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="password" placeholder="密碼" id="password" name="LoginForm[password]" class="form-control">
+                                </div>
+                                <div class="checkbox" style="margin-left: 15px;">
+                                    <label>
+                                        <input type="checkbox" style="height: 25px; vertical-align: top;" name="LoginForm[remember]" value="1" id="remember">&nbsp;&nbsp;記住帳號
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="submit" name="submit" id="xs_contact_submit" class="submit-btn" value="登入">
+                        </form>
+                    </div>
+                    <br><br />
+                    <a style="color: #2563eb;" href="./resetpassword.html"><p>忘記密碼</p></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="./images/login.png" alt="login">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- funfact section -->
+<div style="background-color: #0f172a;">
+    <section class="xs-section-padding pt-0 gwaypoint-tigger">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="margin-top: 8%;">
+                    <div class="funfact-img-wraper">
+                        <img src="./images/like.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin-top: 20%;">
+                    <div class="funfact-content">
+                        <h2 class="funfact-title">目前使用Adforget人數</h2>
+                        <ul class="funfact-lists list-inline">
+                            <li class="single-funfact-item">
+                                <div class="funfact-icon">
+                                    <i class="fab fa-facebook-square" style="color:#fff;"></i>
+                                </div>
+                                <span data-value="13256" data-animation-duration="1500">13256</span><span>+</span>
+                                <p style="color:#fff;">Facebook</p>
+                            </li>
+                            <li class="single-funfact-item">
+                                <div class="funfact-icon">
+                                    <i class="fab fa-instagram-square" style="color:#fff;"></i>
+                                </div>
+                                <span data-value="21254" data-animation-duration="1500">21254</span>
+                                <p style="color:#fff;">instagram</p>
+                            </li>
+                            <li class="single-funfact-item">
+                                <div class="funfact-icon">
+                                    <i class="fab fa-youtube-square" style="color:#fff;"></i>
+                                </div>
+                                <span data-value="13654" data-animation-duration="1500">13654</span>
+                                <p style="color:#fff;">Youtube</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- parallax area section - Line -->
+<section class="agency-parallax-area shuffle-title white-bg">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-7">
+                <div class="parallax-slide" style="background-image: url(./images/line_bg.png)"></div>
+            </div>
+            <div class="col-lg-5">
+                <div class="parallax-container-content">
+                    <img src="./images/line.png" alt="">
+                    <div class="agency-section-title">
+                        <h2 class="section-title">Line:@RMC3248G</h2>
+                    </div>
+                    <p>歡迎加入官方Line好友</p>
+                    <a href="http://line.me/ti/p/@RMC3248G" class="btn btn-primary">點我加入</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- parallax area section - Services -->
+<section class="agency-parallax-area gray-bg shuffle-title">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-7">
+                <div class="parallax-slide" style="background-image: url(./images/sev_bg.png)"></div>
+            </div>
+            <div class="col-lg-5">
+                <div class="parallax-container-content">
+                    <div class="agency-section-title">
+                        <h2 class="section-title" style="color: #000;">服務項目</h2>
+                    </div>
+                    <p>Adforget 提供全方位的數位行銷自動化服務，涵蓋社群媒體管理、廣告投放優化與數據分析</p>
+                    <a href="./services.html" class="btn btn-primary">詳細內容</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- parallax area section - Terms -->
+<section class="agency-parallax-area shuffle-title white-bg">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-7">
+                <div class="parallax-slide" style="background-image: url(./images/sel_bg.png)"></div>
+            </div>
+            <div class="col-lg-5">
+                <div class="parallax-container-content">
+                    <div class="agency-section-title">
+                        <h2 class="section-title">使用條款</h2>
+                    </div>
+                    <p>使用 Adforget 平台前，請詳閱以下服務條款與使用規範</p>
+                    <a href="./terms.html" class="btn btn-primary">詳細內容</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- pricing section -->
+<section class="xs-section-padding waypoint-tigger white-bg">
+    <div class="container">
+        <div class="row section-title-style3">
+            <div class="col-lg-8 mx-auto">
+                <div class="agency-section-title text-center">
+                    <h3 class="main-title" style="color: #000">我們的優勢</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="pricing-table text-center" id="svg-icon-1">
+                    <div class="pricing-header">
+                        <div class="xs-svg" data-hover="#svg-icon-1"><img style="width: 286px" src="./images/pricing-1.svg"></div>
+                        <h3 style="color: black;margin-top: 20px;font-size: 2rem !important;">Facebook</h3>
+                        <div class="pricing-price">
+                            <h2 style="font-size: 2rem;">全台獨家，台灣真人</h2>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-list">
+                            <li>運作迅速</li>
+                            <li>優選台灣真人貼文讚</li>
+                            <li>穩定較不退讚</li>
+                            <li>粉絲追蹤、直播加入</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="pricing-table text-center" id="svg-icon-2">
+                    <div class="pricing-header">
+                        <div class="xs-svg" data-hover="#svg-icon-2"><img style="width: 286px" src="./images/pricing-2.svg"></div>
+                        <h3 style="color: black;margin-top: 20px;font-size: 2rem !important;">IG</h3>
+                        <div class="pricing-price">
+                            <h2 style="font-size: 2rem;">網紅必備，業配首選</h2>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-list">
+                            <li>粉絲真人追蹤</li>
+                            <li>影片、限時動態觀看次數</li>
+                            <li>特選台灣華人客製化留言</li>
+                            <li>全球優選粉絲</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="pricing-table text-center" id="svg-icon-3">
+                    <div class="pricing-header">
+                        <div class="xs-svg" data-hover="#svg-icon-3"><img style="width: 230px" src="./images/pricing-3.svg"></div>
+                        <h3 style="color: black;margin-top: 20px;font-size: 2rem !important;">Youtube & 蝦皮直播</h3>
+                        <div class="pricing-price">
+                            <h2 style="font-size: 2rem;">門面形象，創造無限</h2>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-list">
+                            <li>頻道訂閱數</li>
+                            <li>直播觀看數</li>
+                            <li>客製化留言(中文帳號)</li>
+                            <li>影片按讚數</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="border-width: 6px;border-style:double; width: 350px; height: 120px; border-color: #2b345e ; padding: 5px; text-align: center;">
+            <div style="font-size: 12pt; color:#2b345e;">
+                <p align="left">為使標價統一呈現<br>本網站全以1000個數量做[顯示]價格<br>實際費用依訂單提交數量計算</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2020 <a href="#">Adforget</a> <br> Contact us:a29184987@hotmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+// Auto scroll to login form
+$(document).ready(function () {
+    const target = $('#login');
+    if (target.length) {
+        $('html, body').animate({
+            scrollTop: target.offset().top
+        }, 600);
+    }
+});
+
+// Counter animation
+$(document).ready(function() {
+    $('[data-value]').each(function() {
+        const $el = $(this);
+        const val = $el.data('value');
+        const duration = $el.data('animation-duration') || 2000;
+        $el.text('0');
+        $el.waypoint(function() {
+            $el.prop('Counter', 0).animate({
+                Counter: val
+            }, {
+                duration: duration,
+                easing: 'swing',
+                step: function (now) {
+                    $el.text(Math.ceil(now));
+                }
+            });
+            this.destroy();
+        }, { offset: '80%' });
+    });
+});
+
+// SweetAlert popup
+function als() {
+    Swal.fire({
+        imageUrl: './images/gift.png',
+        imageWidth: 80,
+        imageHeight: 80,
+        title: '獨家｜Facebook台灣真人貼文讚',
+        text: '台灣真人按讚、留言、分享',
+    });
+}
+setTimeout(als, 2000);
+</script>
+
+<script src="https://adforgetw2dt.com/soc/assets/js/plugins.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/Popper.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/bootstrap.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/owl.carousel.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/scrollax.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.waypoints.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/isotope.pkgd.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/swiper.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.easypiechart.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/delighters.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/typed.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.parallax.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.themepunch.tools.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/jquery.themepunch.revolution.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/skrollr.min.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/shuffle-letters.js"></script>
+<script src="https://adforgetw2dt.com/soc/assets/js/main.js"></script>
+
+</body>
+</html>

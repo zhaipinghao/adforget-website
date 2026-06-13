@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOL 管理 - Adforget</title>
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/plugins.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-warning: #f97316;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+            --adforget-border: rgba(245,158,11,0.15);
+        }
+        body { background: var(--adforget-bg); color: #e2e8f0; }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue); border-color: var(--adforget-blue); }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark); border-color: var(--adforget-blue-dark); }
+        .btn-outline-primary { color: var(--adforget-primary); border-color: var(--adforget-primary); background: transparent; }
+        .btn-outline-primary:hover { background: var(--adforget-primary); color: #000; }
+        .btn-success { background-color: var(--adforget-success); border-color: var(--adforget-success); }
+        .btn-danger { background-color: var(--adforget-danger); border-color: var(--adforget-danger); }
+        .btn-sm { padding: 5px 12px; font-size: 13px; }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        .btn4 { padding: 8px 15px !important; }
+        .well { background-color: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 8px; padding: 25px; }
+        .form-control { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; border: 1px solid #475569; border-radius: .25rem; }
+        .form-group { margin-bottom: 1rem; }
+        .control-label { display: inline-block; margin-bottom: .5rem; font-weight: 600; color: #e2e8f0; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th { padding: 12px; color: var(--adforget-primary); font-size: 14px; border-bottom: 2px solid var(--adforget-border); text-align: left; }
+        .table td { padding: 12px; border-bottom: 1px solid var(--adforget-border); font-size: 14px; color: #cbd5e1; }
+        .table tr:hover td { background: rgba(245,158,11,0.05); }
+        .section-card { background: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .section-card h3 { color: var(--adforget-primary); font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; }
+        .status-active { background: rgba(5,150,105,0.2); color: var(--adforget-success); }
+        .status-pending { background: rgba(249,115,22,0.2); color: var(--adforget-warning); }
+        .status-inactive { background: rgba(239,68,68,0.2); color: var(--adforget-danger); }
+        .status-draft { background: rgba(148,163,184,0.2); color: #94a3b8; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .search-box .form-control { flex: 1; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--adforget-border); color: #cbd5e1; margin: 2px; }
+        .tag-primary { border-color: var(--adforget-primary); color: var(--adforget-primary); }
+        .tag-success { border-color: var(--adforget-success); color: var(--adforget-success); }
+        .tag-danger { border-color: var(--adforget-danger); color: var(--adforget-danger); }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--adforget-primary), var(--adforget-primary-dark)); display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; font-size: 16px; }
+        .progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .progress-bar .fill { height: 100%; background: var(--adforget-primary); border-radius: 4px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .mini-card { background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; padding: 15px; text-align: center; }
+        .mini-card:hover { border-color: var(--adforget-primary); }
+        .toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #475569; border-radius: 24px; transition: .3s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .3s; }
+        input:checked + .toggle-slider { background: var(--adforget-primary); }
+        input:checked + .toggle-slider:before { transform: translateX(20px); }
+        .platform-connect { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; margin-bottom: 10px; }
+        .platform-connect .info { display: flex; align-items: center; gap: 15px; }
+        .platform-connect .info i { font-size: 28px; }
+        .platform-connect .info h4 { margin: 0; font-size: 16px; color: #e2e8f0; }
+        .platform-connect .info p { margin: 0; font-size: 13px; color: #94a3b8; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: #1e293b; border: 1px solid var(--adforget-border); border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; }
+        .modal-content h3 { color: var(--adforget-primary); margin-bottom: 20px; }
+        .close-modal { float: right; color: #94a3b8; cursor: pointer; font-size: 20px; }
+        .close-modal:hover { color: #e2e8f0; }
+    </style>
+</head>
+<body>
+
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./dashboard.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;">
+                    <a style="color: #fff;font-size: 15px; margin-left: 40px;">
+                        <span class="badge">NT$ 28,200</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./dashboard.html">營運儀表板</a></li>
+                    <li><a class="btn4" href="./neworder.html">新增行銷任務</a></li>
+                    <li><a class="btn4" href="./orders.html">任務紀錄</a></li>
+                    <li><a class="btn4" href="./shipping.html">出貨管理</a></li>
+                    <li><a class="btn4" href="./materials.html">素材庫</a></li>
+                    <li class="active"><a class="btn4" href="./kol.html">KOL管理</a></li>
+                    <li><a class="btn4" href="./reports.html">報表中心</a></li>
+                    <li><a class="btn4" href="./integrations.html">平台整合</a></li>
+                    <li><a class="btn4" href="./team.html">團隊</a></li>
+                    <li><a class="btn4" href="./addfunds.html">帳戶儲值</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./settings.html">設定</a></li>
+                    <li><a><span class="badge">NT$ 28,200</span></a></li>
+                    <li><a href="./account.html">帳戶設定</a></li>
+                    <li><a href="./index.html">退出登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="section-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0;"><i class="fas fa-users"></i> KOL 名單</h3>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('kolModal')"><i class="fas fa-plus"></i> 新增 KOL</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="form-control" placeholder="搜尋 KOL 名稱、平台或標籤...">
+                    <select class="form-control" style="max-width: 150px;">
+                        <option>全部狀態</option>
+                        <option>已聯繫</option>
+                        <option>洽談中</option>
+                        <option>合作中</option>
+                        <option>已完成</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>KOL</th>
+                            <th>平台</th>
+                            <th>粉絲數</th>
+                            <th>報價</th>
+                            <th>狀態</th>
+                            <th>成效</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar" style="background: linear-gradient(135deg, #e4405f, #c13584);">A</div>
+                                    <div>
+                                        <div style="font-weight: 600; color: #e2e8f0;">Amy 愛露營</div>
+                                        <div style="font-size: 12px; color: #94a3b8;">戶外 / 生活</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><i class="fab fa-instagram" style="color: #e4405f;"></i> IG</td>
+                            <td>45K</td>
+                            <td>NT$8,000/篇</td>
+                            <td><span class="status-badge status-active">合作中</span></td>
+                            <td>ROAS 3.2</td>
+                            <td><a href="#">詳情</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar" style="background: linear-gradient(135deg, #1877f2, #0d5cb6);">T</div>
+                                    <div>
+                                        <div style="font-weight: 600; color: #e2e8f0;">Tech 哥開箱</div>
+                                        <div style="font-size: 12px; color: #94a3b8;">3C / 科技</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><i class="fab fa-youtube" style="color: #ff0000;"></i> YT</td>
+                            <td>120K</td>
+                            <td>NT$25,000/支</td>
+                            <td><span class="status-badge status-pending">洽談中</span></td>
+                            <td>—</td>
+                            <td><a href="#">詳情</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar" style="background: linear-gradient(135deg, #00c300, #009900);">L</div>
+                                    <div>
+                                        <div style="font-weight: 600; color: #e2e8f0;">Lisa 團購媽</div>
+                                        <div style="font-size: 12px; color: #94a3b8;">團購 / 親子</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><i class="fab fa-facebook-square" style="color: #1877f2;"></i> FB</td>
+                            <td>80K</td>
+                            <td>NT$12,000/篇</td>
+                            <td><span class="status-badge status-active">合作中</span></td>
+                            <td>ROAS 4.1</td>
+                            <td><a href="#">詳情</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar" style="background: linear-gradient(135deg, #1bd1ea, #0ea5e9);">M</div>
+                                    <div>
+                                        <div style="font-weight: 600; color: #e2e8f0;">Mike 音響控</div>
+                                        <div style="font-size: 12px; color: #94a3b8;">音樂 / 3C</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><i class="fas fa-comments" style="color: #1bd1ea;"></i> Threads</td>
+                            <td>18K</td>
+                            <td>NT$3,500/篇</td>
+                            <td><span class="status-badge status-draft">已聯繫</span></td>
+                            <td>—</td>
+                            <td><a href="#">詳情</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-shopping-basket"></i> 團購活動管理</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>活動名稱</th>
+                            <th>平台</th>
+                            <th>時間</th>
+                            <th>目標銷量</th>
+                            <th>目前銷量</th>
+                            <th>達成率</th>
+                            <th>狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>奧丁之聲夏季團購</td>
+                            <td>FB 社團</td>
+                            <td>2025-06-15 ~ 06-30</td>
+                            <td>100 台</td>
+                            <td>67 台</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div class="progress-bar" style="flex: 1;"><div class="fill" style="width: 67%;"></div></div>
+                                    <span style="font-size: 12px;">67%</span>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-active">進行中</span></td>
+                        </tr>
+                        <tr>
+                            <td>露營音響組合包</td>
+                            <td>LINE 群組</td>
+                            <td>2025-06-01 ~ 06-10</td>
+                            <td>50 組</td>
+                            <td>50 組</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div class="progress-bar" style="flex: 1;"><div class="fill" style="width: 100%;"></div></div>
+                                    <span style="font-size: 12px;">100%</span>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-active">已達標</span></td>
+                        </tr>
+                        <tr>
+                            <td>父親節限時團購</td>
+                            <td>IG 限動</td>
+                            <td>2025-07-01 ~ 07-07</td>
+                            <td>80 台</td>
+                            <td>0 台</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div class="progress-bar" style="flex: 1;"><div class="fill" style="width: 0%;"></div></div>
+                                    <span style="font-size: 12px;">0%</span>
+                                </div>
+                            </td>
+                            <td><span class="status-badge status-draft">籌備中</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-outline-primary btn-sm"><i class="fas fa-plus"></i> 新增團購活動</button>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="section-card">
+                <h3><i class="fas fa-chart-pie"></i> KOL 成效總覽</h3>
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">合作 KOL 數</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-primary);">12</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">平均 ROAS</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--adforget-primary);">3.8</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">總投入</div>
+                            <div style="font-size: 20px; font-weight: 700; color: var(--adforget-primary);">NT$86K</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mini-card">
+                            <div style="font-size: 12px; color: #94a3b8;">總回報</div>
+                            <div style="font-size: 20px; font-weight: 700; color: var(--adforget-success);">NT$327K</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-tags"></i> 標籤分類</h3>
+                <div style="margin-bottom: 10px;">
+                    <span class="tag tag-primary">戶外露營</span>
+                    <span class="tag tag-primary">3C 開箱</span>
+                    <span class="tag tag-primary">團購媽</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="tag">音樂</span>
+                    <span class="tag">生活</span>
+                    <span class="tag">親子</span>
+                </div>
+                <div>
+                    <span class="tag">科技</span>
+                    <span class="tag">旅遊</span>
+                    <span class="tag">美食</span>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-bell"></i> 待追蹤</h3>
+                <div style="font-size: 13px; color: #94a3b8;">
+                    <div style="padding: 10px 0; border-bottom: 1px solid var(--adforget-border);">
+                        <div style="color: #e2e8f0;"><i class="fas fa-exclamation-circle" style="color: var(--adforget-warning);"></i> Tech 哥開箱報價待回覆</div>
+                        <div>期限：2025-06-12</div>
+                    </div>
+                    <div style="padding: 10px 0; border-bottom: 1px solid var(--adforget-border);">
+                        <div style="color: #e2e8f0;"><i class="fas fa-exclamation-circle" style="color: var(--adforget-warning);"></i> Amy 愛露營內容待審核</div>
+                        <div>期限：2025-06-11</div>
+                    </div>
+                    <div style="padding: 10px 0;">
+                        <div style="color: #e2e8f0;"><i class="fas fa-info-circle" style="color: var(--adforget-primary);"></i> 父親節團購 KOL 名單待整理</div>
+                        <div>期限：2025-06-15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KOL Modal -->
+    <div class="modal-overlay" id="kolModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('kolModal')">&times;</span>
+            <h3><i class="fas fa-user-plus"></i> 新增 KOL</h3>
+            <form>
+                <div class="form-group">
+                    <label class="control-label">KOL 名稱</label>
+                    <input type="text" class="form-control" placeholder="例如：Amy 愛露營">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">主要平台</label>
+                    <select class="form-control">
+                        <option>Instagram</option>
+                        <option>Facebook</option>
+                        <option>YouTube</option>
+                        <option>Threads</option>
+                        <option>TikTok</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">粉絲數</label>
+                    <input type="text" class="form-control" placeholder="例如：45K">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">合作報價</label>
+                    <input type="text" class="form-control" placeholder="例如：NT$8,000/篇">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">標籤分類</label>
+                    <input type="text" class="form-control" placeholder="例如：戶外, 露營, 生活">
+                </div>
+                <button type="button" class="btn btn-primary" style="width: 100%;" onclick="closeModal('kolModal')">新增 KOL</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        document.querySelectorAll('.modal-overlay').forEach(function(m) {
+            m.addEventListener('click', function(e) { if(e.target === m) m.classList.remove('active'); });
+        });
+    </script>
+
+</div>
+
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2025 <a href="#">Adforget</a> <br> 電商營運自動化平台</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/plugins.js"></script>
+<script src="./js/Popper.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平台整合 - Adforget</title>
+    <link rel="shortcut icon" type="image/ico" href="./images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/plugins.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <script src="https://kit.fontawesome.com/c9e74b4bba.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --adforget-primary: #f59e0b;
+            --adforget-primary-dark: #d97706;
+            --adforget-blue: #2563eb;
+            --adforget-blue-dark: #1d4ed8;
+            --adforget-success: #059669;
+            --adforget-danger: #ef4444;
+            --adforget-warning: #f97316;
+            --adforget-bg: #0f172a;
+            --adforget-card: rgba(255,255,255,0.05);
+            --adforget-border: rgba(245,158,11,0.15);
+        }
+        body { background: var(--adforget-bg); color: #e2e8f0; }
+        .badge { background: var(--adforget-primary) !important; color: #000 !important; }
+        .btn-primary { background-color: var(--adforget-blue); border-color: var(--adforget-blue); }
+        .btn-primary:hover { background-color: var(--adforget-blue-dark); border-color: var(--adforget-blue-dark); }
+        .btn-outline-primary { color: var(--adforget-primary); border-color: var(--adforget-primary); background: transparent; }
+        .btn-outline-primary:hover { background: var(--adforget-primary); color: #000; }
+        .btn-success { background-color: var(--adforget-success); border-color: var(--adforget-success); }
+        .btn-danger { background-color: var(--adforget-danger); border-color: var(--adforget-danger); }
+        .btn-sm { padding: 5px 12px; font-size: 13px; }
+        .xs-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; }
+        .xs-footer-section { background: #0f172a !important; }
+        a { color: var(--adforget-primary); }
+        a:hover { color: var(--adforget-primary-dark); }
+        .nav-menu li.active a { color: var(--adforget-primary) !important; }
+        .btn4 { padding: 8px 15px !important; }
+        .well { background-color: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 8px; padding: 25px; }
+        .form-control { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; border: 1px solid #475569; border-radius: .25rem; }
+        .form-group { margin-bottom: 1rem; }
+        .control-label { display: inline-block; margin-bottom: .5rem; font-weight: 600; color: #e2e8f0; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th { padding: 12px; color: var(--adforget-primary); font-size: 14px; border-bottom: 2px solid var(--adforget-border); text-align: left; }
+        .table td { padding: 12px; border-bottom: 1px solid var(--adforget-border); font-size: 14px; color: #cbd5e1; }
+        .table tr:hover td { background: rgba(245,158,11,0.05); }
+        .section-card { background: var(--adforget-card); border: 1px solid var(--adforget-border); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .section-card h3 { color: var(--adforget-primary); font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; }
+        .status-active { background: rgba(5,150,105,0.2); color: var(--adforget-success); }
+        .status-pending { background: rgba(249,115,22,0.2); color: var(--adforget-warning); }
+        .status-inactive { background: rgba(239,68,68,0.2); color: var(--adforget-danger); }
+        .status-draft { background: rgba(148,163,184,0.2); color: #94a3b8; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .search-box .form-control { flex: 1; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--adforget-border); color: #cbd5e1; margin: 2px; }
+        .tag-primary { border-color: var(--adforget-primary); color: var(--adforget-primary); }
+        .tag-success { border-color: var(--adforget-success); color: var(--adforget-success); }
+        .tag-danger { border-color: var(--adforget-danger); color: var(--adforget-danger); }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--adforget-primary), var(--adforget-primary-dark)); display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; font-size: 16px; }
+        .progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .progress-bar .fill { height: 100%; background: var(--adforget-primary); border-radius: 4px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .mini-card { background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; padding: 15px; text-align: center; }
+        .mini-card:hover { border-color: var(--adforget-primary); }
+        .toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #475569; border-radius: 24px; transition: .3s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .3s; }
+        input:checked + .toggle-slider { background: var(--adforget-primary); }
+        input:checked + .toggle-slider:before { transform: translateX(20px); }
+        .platform-connect { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--adforget-border); border-radius: 10px; margin-bottom: 10px; }
+        .platform-connect .info { display: flex; align-items: center; gap: 15px; }
+        .platform-connect .info i { font-size: 28px; }
+        .platform-connect .info h4 { margin: 0; font-size: 16px; color: #e2e8f0; }
+        .platform-connect .info p { margin: 0; font-size: 13px; color: #94a3b8; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: #1e293b; border: 1px solid var(--adforget-border); border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; }
+        .modal-content h3 { color: var(--adforget-primary); margin-bottom: 20px; }
+        .close-modal { float: right; color: #94a3b8; cursor: pointer; font-size: 20px; }
+        .close-modal:hover { color: #e2e8f0; }
+    </style>
+</head>
+<body>
+
+<header class="xs-header header-transparent nav-lights">
+    <div class="container">
+        <nav class="xs-menus clearfix xs_nav-portrait">
+            <div class="nav-header">
+                <a class="nav-brand" href="./dashboard.html">
+                    <div><img style="width: 40px;" src="./images/logo.png" alt="">&nbsp;&nbsp; Adforget</div>
+                </a>
+                <div class="nav-toggle" style="right: 100px;">
+                    <a style="color: #fff;font-size: 15px; margin-left: 40px;">
+                        <span class="badge">NT$ 28,200</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper">
+                <div style="text-align: center;margin:10px 0px;"><img style="width: 40px;" src="./images/logo.png" alt="Adforget-行銷自動化平台" title="">&nbsp;&nbsp; Adforget</div>
+                <ul class="nav-menu">
+                    <li><a class="btn4" href="./dashboard.html">營運儀表板</a></li>
+                    <li><a class="btn4" href="./neworder.html">新增行銷任務</a></li>
+                    <li><a class="btn4" href="./orders.html">任務紀錄</a></li>
+                    <li><a class="btn4" href="./shipping.html">出貨管理</a></li>
+                    <li><a class="btn4" href="./materials.html">素材庫</a></li>
+                    <li><a class="btn4" href="./kol.html">KOL管理</a></li>
+                    <li><a class="btn4" href="./reports.html">報表中心</a></li>
+                    <li class="active"><a class="btn4" href="./integrations.html">平台整合</a></li>
+                    <li><a class="btn4" href="./team.html">團隊</a></li>
+                    <li><a class="btn4" href="./addfunds.html">帳戶儲值</a></li>
+                    <li><a class="btn4" href="./services.html">服務項目</a></li>
+                    <li><a class="btn4" href="./pricing.html">方案價格</a></li>
+                    <li><a class="btn4" href="./api.html">API</a></li>
+                    <li><a class="btn4" href="./settings.html">設定</a></li>
+                    <li><a><span class="badge">NT$ 28,200</span></a></li>
+                    <li><a href="./account.html">帳戶設定</a></li>
+                    <li><a href="./index.html">退出登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div style="margin-top: 5%;">&nbsp;</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="section-card">
+                <h3><i class="fas fa-plug"></i> 銷售通路連接</h3>
+                
+                <div class="platform-connect">
+                    <div class="info">
+                        <i class="fas fa-shopping-bag" style="color: #ee4d2d;"></i>
+                        <div>
+                            <h4>蝦皮賣場</h4>
+                            <p>訂單同步、庫存管理、站內廣告報表</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="status-badge status-active"><i class="fas fa-check"></i> 已連接</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="platform-connect">
+                    <div class="info">
+                        <i class="fas fa-shopping-cart" style="color: #00a0e9;"></i>
+                        <div>
+                            <h4>Momo 購物網</h4>
+                            <p>訂單同步、商品上架、促銷活動管理</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="status-badge status-active"><i class="fas fa-check"></i> 已連接</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="platform-connect">
+                    <div class="info">
+                        <i class="fas fa-desktop" style="color: #0066cc;"></i>
+                        <div>
+                            <h4>PChome 商店街</h4>
+                            <p>訂單同步、庫存管理、金流對帳</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="status-badge status-inactive">未連接</span>
+                        <button class="btn btn-primary btn-sm">連接</button>
+                    </div>
+                </div>
+
+                <div class="platform-connect">
+                    <div class="info">
+                        <i class="fas fa-globe" style="color: #4ade80;"></i>
+                        <div>
+                            <h4>WACA 官網</h4>
+                            <p>訂單同步、會員管理、金流對帳</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="status-badge status-active"><i class="fas fa-check"></i> 已連接</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-bullhorn"></i> 廣告與社群連接</h3>
+                
+                <div class="platform-connect">
+                    <div class="info">
+                        <i class="fab fa-facebook-square" style="color: #1877f2;"></i>
+                        <div>
+                            <h4>Meta Ads (Facebook / Instagram)</h4>
+                            <p>廣告成效追蹤、素材管理、自動判讀</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="status-badge status-active"><i class="fas fa-check"></i> 已連接</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="platform-connect">
+                    <div class="info">
+                        <i class="fab fa-google" style="color: #ea4335;"></i>
+                        <div>
+                            <h4>Google Ads</h4>
+                            <p>關鍵字廣告、購物廣告、成效追蹤</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="status-badge status-pending">授權中</span>
+                        <button class="btn btn-outline-primary btn-sm">重新授權</button>
+                    </div>
+                </div>
+
+                <div class="platform-connect">
+                    <div class="info">
+                        <i class="fab fa-line" style="color: #00c300;"></i>
+                        <div>
+                            <h4>LINE 官方帳號</h4>
+                            <p>訊息推播、會員管理、自動回覆</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="status-badge status-inactive">未連接</span>
+                        <button class="btn btn-primary btn-sm">連接</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-code"></i> API 與 Webhook 設定</h3>
+                <div class="form-group">
+                    <label class="control-label">API Key</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" class="form-control" value="ak_live_adf_xxxxxxxxxxxxxxxx" readonly style="font-family: monospace;">
+                        <button class="btn btn-outline-primary" style="white-space: nowrap;"><i class="fas fa-copy"></i> 複製</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Webhook URL</label>
+                    <input type="text" class="form-control" placeholder="https://your-domain.com/webhook/adforget">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Webhook 事件</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <label style="display: flex; align-items: center; gap: 5px; color: #cbd5e1; font-size: 14px;"><input type="checkbox" checked> 新訂單</label>
+                        <label style="display: flex; align-items: center; gap: 5px; color: #cbd5e1; font-size: 14px;"><input type="checkbox" checked> 訂單狀態變更</label>
+                        <label style="display: flex; align-items: center; gap: 5px; color: #cbd5e1; font-size: 14px;"><input type="checkbox"> 庫存異動</label>
+                        <label style="display: flex; align-items: center; gap: 5px; color: #cbd5e1; font-size: 14px;"><input type="checkbox" checked> 廣告成效更新</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary">儲存設定</button>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="section-card">
+                <h3><i class="fas fa-info-circle"></i> 連接狀態總覽</h3>
+                <div style="display: flex; justify-content: space-around; margin-bottom: 20px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 700; color: var(--adforget-success);">3</div>
+                        <div style="font-size: 12px; color: #94a3b8;">已連接</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 700; color: var(--adforget-warning);">1</div>
+                        <div style="font-size: 12px; color: #94a3b8;">授權中</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 700; color: var(--adforget-danger);">2</div>
+                        <div style="font-size: 12px; color: #94a3b8;">未連接</div>
+                    </div>
+                </div>
+                <div style="font-size: 13px; color: #94a3b8;">
+                    <p><i class="fas fa-lightbulb" style="color: var(--adforget-primary);"></i> 企業版可連接無限平台，專業版上限 5 個</p>
+                    <p><i class="fas fa-shield-alt" style="color: var(--adforget-primary);"></i> 所有連接均採用 OAuth 2.0 安全授權</p>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-history"></i> 最近連接紀錄</h3>
+                <div style="font-size: 13px; color: #94a3b8;">
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--adforget-border);">
+                        <div style="color: #e2e8f0;">蝦皮賣場 - 訂單同步成功</div>
+                        <div>2025-06-11 03:45</div>
+                    </div>
+                    <div style="padding: 8px 0; border-bottom: 1px solid var(--adforget-border);">
+                        <div style="color: #e2e8f0;">Meta Ads - 授權更新</div>
+                        <div>2025-06-10 22:10</div>
+                    </div>
+                    <div style="padding: 8px 0;">
+                        <div style="color: #e2e8f0;">WACA - 連接成功</div>
+                        <div>2025-06-09 14:30</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div style="margin-top: 5%;">
+    <footer class="xs-footer-section">
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="copyright-section text-center">
+                    <p>Copyright &copy; 2025 <a href="#">Adforget</a> <br> 電商營運自動化平台</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/plugins.js"></script>
+<script src="./js/Popper.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+
+</body>
+</html>
